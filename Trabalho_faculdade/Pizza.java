@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-import javax.swing.text.Style;
 public class Pizza {
     private String flavor;
     private Double price;
@@ -23,6 +22,6 @@ public class Pizza {
         for(int i = 0;i<this.ingredients.size();i++){
             System.out.print(this.ingredients.get(i) + ",");
         }
-        
+
     }
 }
