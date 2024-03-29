@@ -1,3 +1,4 @@
+package Exer_1;
 public class Cal{
     public static float Sum(float a,float b){
         return a+b;

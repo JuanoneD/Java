@@ -1,3 +1,4 @@
+package Exer_4;
 import java.util.Scanner;
 public class Exer_4 {
     public static void main(String[] args) {

@@ -1,3 +1,4 @@
+package Exer_5;
 public class Car {
     private String brand,model,plate;
     private int year,currentSpeed;

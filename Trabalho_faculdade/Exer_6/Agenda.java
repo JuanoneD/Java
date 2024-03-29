@@ -1,3 +1,4 @@
+package Exer_6;
 import java.util.ArrayList;
 public class Agenda {
     private ArrayList<Contacts> contactsNames = new ArrayList<Contacts>();

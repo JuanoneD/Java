@@ -1,3 +1,4 @@
+package Exer_7;
 import java.util.ArrayList;
 public class Product {
     private ArrayList<String> name = new ArrayList<String>();
