@@ -24,7 +24,7 @@ public class Product {
     }
     private Product searchProduct(String name){
         for(int i = 0;i<products.size();i++){
-            if(products.get(i).getName().contains(name)){
+            if(products.get(i).getName().equalsIgnoreCase(name)){
                 return products.get(i);
             }
         }

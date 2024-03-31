@@ -26,7 +26,7 @@ public class Orders {
     }
     private Orders searchName(String name){
         for(int i = 0;i<order.size();i++){
-            if(order.get(i).getName().contains(name)){
+            if(order.get(i).getName().equalsIgnoreCase(name)){
                 return order.get(i);
             }
         }
