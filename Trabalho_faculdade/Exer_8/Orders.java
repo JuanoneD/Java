@@ -30,7 +30,7 @@ public class Orders {
                 return order.get(i);
             }
         }
-        return order.get(0);
+        return null;
     }
     String reportOrder(){
         double totalPrice=0d;

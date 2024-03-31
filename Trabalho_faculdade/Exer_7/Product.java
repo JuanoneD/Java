@@ -28,7 +28,7 @@ public class Product {
                 return products.get(i);
             }
         }
-        return products.get(0);
+        return null;
     }
     public void updateStock(String nameProduct,int stock){
         searchProduct(nameProduct).setAmount(stock);
