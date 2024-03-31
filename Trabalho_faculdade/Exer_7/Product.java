@@ -1,39 +1,71 @@
 package Exer_7;
+
 import java.util.ArrayList;
 public class Product {
-    private ArrayList<String> name = new ArrayList<String>();
-    private ArrayList<String> code = new ArrayList<String>();
-    private ArrayList<Integer> amount = new ArrayList<Integer>();
-    private ArrayList<Double> price = new ArrayList<Double>();
+    private ArrayList<Product> products = new ArrayList<>();
+    private String name;
+    private String code;
+    private Integer amount;
+    private Double price;
 
     public void addProduct(String nameProduct,String codeProduct,Integer amountProduct,Double priceProduct){
-        name.add(nameProduct);
-        code.add(codeProduct);
-        amount.add(amountProduct);
-        price.add(priceProduct);
+        Product newProduct = new Product();
+        newProduct.addInfo(nameProduct, codeProduct, amountProduct, priceProduct);
+        products.add(newProduct);
+    }
+    private void addInfo(String nameProduct,String codeProduct,Integer amountProduct,Double priceProduct){
+       this.name = nameProduct;
+       this.code = codeProduct;
+       this.amount = amountProduct;
+       this.price = priceProduct;
     }
     public void removeProduct(String nameProduct){
-        int index = name.indexOf(nameProduct);
-        name.remove(index);
-        code.remove(index);
-        amount.remove(index);
-        price.remove(index);
+        products.remove(searchProduct(nameProduct));
+    }
+    private Product searchProduct(String name){
+        for(int i = 0;i<products.size();i++){
+            if(products.get(i).getName().contains(name)){
+                return products.get(i);
+            }
+        }
+        return products.get(0);
     }
     public void updateStock(String nameProduct,int stock){
-        int index = name.indexOf(nameProduct);
-        amount.add(index,stock);
+        searchProduct(nameProduct).setAmount(stock);
     }
     public void updateProduct(String nameProduct,String codeProduct,Integer amountProduct,Double priceProduct){
-        int index = name.indexOf(nameProduct);
-        System.out.println(index);
-        code.add(index,codeProduct);
-        amount.add(index,amountProduct);
-        price.add(index,priceProduct);
+        searchProduct(nameProduct).setCode(codeProduct);
+        searchProduct(nameProduct).setAmount(amountProduct);
+        searchProduct(nameProduct).setPrice(priceProduct);
+
     }
     public void reportProducts(){
-        for(int i = 0; i < name.size();i++){
-            System.out.println(name.get(i)+" com o codigo "+ code.get(i) + " estoque de " + amount.get(i) + " com o valor unitario de "+ price.get(i) + "  com o valor total de "+ (amount.get(i)*price.get(i)));
+        for(int i = 0; i < products.size();i++){
+            System.out.println( products.get(i).getName() +" com o codigo "+ products.get(i).getCode()  + " estoque de " + products.get(i).getAmount() + " com o valor unitario de "+ products.get(i).getPrice() + "  com o valor total de "+ (products.get(i).getAmount() * products.get(i).getPrice()));
         }
     }
-
+    public String getName() {
+        return name;
+    }
+    public Integer getAmount() {
+        return amount;
+    }
+    public String getCode() {
+        return code;
+    }
+    public Double getPrice() {
+        return price;
+    }
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+    public void setCode(String code) {
+        this.code = code;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 }
