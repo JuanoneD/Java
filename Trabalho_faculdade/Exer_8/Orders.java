@@ -1,30 +1,55 @@
 package Exer_8;
-import java.util.ArrayList;
+import java.util.*;
+
 public class Orders {
-    private ArrayList<String> name = new ArrayList<>();
-    private ArrayList<String> flavor = new ArrayList<>();
-    private ArrayList<String> address = new ArrayList<>();
-    private ArrayList<Double> price = new ArrayList<>();
-    public void addOrder(String nameOrder,String flavorOrder,String addressOrder,Double priceOrder){
-        name.add(nameOrder);
-        flavor.add(flavorOrder);
-        address.add(addressOrder);
-        price.add(priceOrder);
+
+    private static ArrayList<Orders> order = new ArrayList<>();
+    private String name;
+    private String address;
+    private String flavor;
+    private Double price;
+
+
+    public void addOrders(String name,String address,Pizza pizzaName){
+        Orders newOrder = new Orders();
+        newOrder.addInfo(name, address, pizzaName);
+        order.add(newOrder);
     }
-    public void cancelOrder(String nameOrder){
-        int index = name.indexOf(nameOrder);
-        name.remove(index);
-        flavor.remove(index);
-        address.remove(index);
-        price.remove(index);
+    private  void addInfo(String name,String address,Pizza pizzaName){
+        this.name = name;
+        this.address = address;
+        this.flavor = pizzaName.getFlavor();
+        this.price = pizzaName.getPrice();
     }
-    public String reportOrders(){
-        int index = name.size();
-        Double sum=0d;
-        for(int i = 0;i<index;i++){
-            sum +=price.get(i);
+    public void removeOrders(String name){
+        order.remove(searchName(name));
+    }
+    private Orders searchName(String name){
+        for(int i = 0;i<order.size();i++){
+            if(order.get(i).getName().contains(name)){
+                return order.get(i);
+            }
         }
-        return "Foram realizados "+ name.size() + " pedidos e media de preço foi "+ (sum/name.size());
+        return order.get(0);
+    }
+    String reportOrder(){
+        double totalPrice=0d;
+        for(int i = 0;i<order.size();i++){
+            totalPrice += order.get(i).getPrice();
+        }
+        return "foram feitos "+order.size()+" pedidos e a media gasta foi "+(totalPrice/order.size());
     }
 
+    public String getName() {
+        return name;
+    }
+    public Double getPrice() {
+        return price;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public String getFlavor() {
+        return flavor;
+    }
 }

@@ -1,4 +1,5 @@
 package Exer_8;
+
 import java.util.Scanner;
 public class Exer_8 {
     public static void main(String[] args) {
@@ -28,9 +29,9 @@ public class Exer_8 {
                     loopBreak = true;
                     break;
                 case 1:
-                    System.out.print("Escreva o nome do cliente");
-                    name = scan.nextLine();
-                    System.out.print("Escreva o endereço do cliente");
+                    System.out.print("Escreva o nome do cliente ");
+                    name = scan.nextLine(); 
+                    System.out.print("Escreva o endereço do cliente ");
                     address = scan.nextLine();
                     System.out.println("\nEscreva 1 para:");
                     calabresa.seePizza();
@@ -45,16 +46,16 @@ public class Exer_8 {
                     scan.nextLine();
                     switch (menu) {
                         case 1:
-                            order.addOrder(name, calabresa.getFlavor(), address, calabresa.getPrice());
+                            order.addOrders(name,address,calabresa);
                             break;
                         case 2:
-                            order.addOrder(name, frango.getFlavor(), address, frango.getPrice());
+                            order.addOrders(name, address,frango);
                             break;
                         case 3:
-                            order.addOrder(name, portuguesa.getFlavor(), address, portuguesa.getPrice());
+                            order.addOrders(name, address,portuguesa);
                             break;
                         case 4:
-                            order.addOrder(name, marguerida.getFlavor(), address, marguerida.getPrice());
+                            order.addOrders(name, address, marguerida);
                             break;
                         default:
                             System.out.println("Sabor invalido");
@@ -64,10 +65,10 @@ public class Exer_8 {
                 case 2:
                     System.out.print("Escreva o nome do cliente");
                     name = scan.nextLine();
-                    order.cancelOrder(name);
+                    order.removeOrders(name);
                     break;
                 case 3:
-                    System.out.println(order.reportOrders());
+                    System.out.println(order.reportOrder());
                     break;
                 default:
                     System.out.println("Valor invalido");
