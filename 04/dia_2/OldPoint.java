@@ -1,42 +1,78 @@
 public class OldPoint {
+
     private float workHours;
-    private float joinedTime,exitTime;
-    private String date;
+    private PointDay workDay = null;
+    private int numbersDays = 0;
+
 
     OldPoint(){
 
-        this.workHours = 0;
-        this.joinedTime = 0;
-        this.exitTime = 0;
-        this.date = null;
     }
 
-    public void setJoinedTime(float joinedTime) {
+    private void addEntrance(PointDay current,Time currentTime){
 
-        this.joinedTime = joinedTime;
+        if(current == null){
+
+            PointDay newPoint = new PointDay();
+            newPoint.setEntrance(currentTime);
+            return;
+        }
+
+        if(current.getNextDay() == null){
+
+            PointDay newPoint = new PointDay();
+            newPoint.setEntrance(currentTime); 
+            current.setNextDay(newPoint);
+            return;
+        }
+
+        addEntrance(current.getNextDay(),currentTime);
     }
 
-    public void setExitTime(float exitTime) {
+    private void addExit(PointDay current,Time currenTime){
 
-        this.exitTime = exitTime;
-        this.workHours += exitTime - joinedTime;
+        if(current.getExit() == 0){
+
+            current.setExit(currenTime);
+            workHours += current.getExit() - current.getEntrance();
+            return;
+        }
+
+        addExit(current.getNextDay(), currenTime);
+    }
+
+    private PointDay getDay(PointDay day,int index){
+        if(index == 0){
+            return day;
+        }
+        
+        return getDay(day.getNextDay(), index-1);
+    }
+
+    public void addEntrance(Time currentTime){
+
+        addEntrance(workDay, currentTime);
+        numbersDays ++;
+    }
+
+    public void addExit(Time currenTime){
+        addExit(workDay, currenTime);
+    }
+
+    public PointDay getDay(int index){
+        if(index >= numbersDays){
+            return null;
+        }
+        return getDay(workDay, index);
+    }
+    
+
+    public int getNumbersDays() {
+        return numbersDays;
     }
 
     public float getWorkHours() {
-
         return workHours;
-    }
-    public void setDate(String date) {
-        this.date = date;
-    }
-    public String getDate() {
-        return date;
-    }
-    public float getExitTime() {
-        return exitTime;
-    }
-    public float getJoinedTime() {
-        return joinedTime;
     }
 
 }
