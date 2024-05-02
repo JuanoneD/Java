@@ -9,6 +9,7 @@ public class main {
         String CPF,password;
 
         Employer admin = new Employer("Admin", "Admin", "Admin", "Admin", true);
+        Employer user;
         ListNode list = new ListNode();
 
         list.addEmployer(admin);
@@ -19,8 +20,11 @@ public class main {
             CPF = scan.nextLine();
             System.out.println("Escreva sua senha");
             password = scan.nextLine();
+            for(int i=0;i<list.getSize();i++){
+                user = list.getEmployer(i);
+                if(user.getCPF().equals(CPF));
+            }
 
-            
 
 
         }
