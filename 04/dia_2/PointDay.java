@@ -10,12 +10,12 @@ public class PointDay {
 
     public void setEntrance(Time current) {
         this.date = current.getDate();
-        this.entrance = current.hour + (current.minutes/60);
+        this.entrance = current.getHour() + current.getMinutes()/60;
     }
 
     public void setExit(Time current) {
         this.date = current.getDate();
-        this.exit = current.hour + (current.minutes/60);
+        this.exit = current.getHour() + current.getMinutes()/60;
     }
 
     public PointDay getNextDay() {

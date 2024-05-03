@@ -1,7 +1,7 @@
 public class Time {
-    int hour;
-    int minutes;
-    String date;
+    private int hour;
+    private int minutes;
+    private String date;
     
 
 

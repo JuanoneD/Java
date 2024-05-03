@@ -19,7 +19,7 @@ public class ListNode {
 
         if(current == null){
             Node newNode = new Node(employer);
-            next = newNode;
+            this.next = newNode;
             return;
         }
 
@@ -34,10 +34,24 @@ public class ListNode {
     }
 
     private Employer getEmployer(Node current,int i){
+
         if(i == 0){
             return current.getEmployer();
         }
         return getEmployer(current.getNextNode(),i-1);
+    }
+
+    private OldPoint getPoint(Node current,int i){
+
+        if(i == 0){
+            return current.getPoint();
+        }
+        return getPoint(current.getNextNode(),i-1);   
+    }
+
+    public OldPoint getPoint(int index){
+
+        return getPoint(next,index);
     }
 
     public int getSize() {
@@ -48,4 +62,18 @@ public class ListNode {
         return next;
     }
 
+    private Node getNode(Node current,int index){
+        if(index == 0){
+            return current;
+        }
+        return getNode(current.getNextNode(),index-1);
+    }
+
+    public Node getNode(int index){
+        if(index >= size){
+            return null; 
+        }
+
+        return getNode(next,index);
+    }
 }

@@ -15,6 +15,7 @@ public class OldPoint {
 
             PointDay newPoint = new PointDay();
             newPoint.setEntrance(currentTime);
+            this.workDay = newPoint;
             return;
         }
 
