@@ -45,7 +45,7 @@ public class OldPoint {
         if(index == 0){
             return day;
         }
-        
+
         return getDay(day.getNextDay(), index-1);
     }
 

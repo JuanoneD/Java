@@ -32,11 +32,20 @@ public class ListNode {
         
         addEmployer(current.getNextNode(),employer);
     }
+
     private Employer getEmployer(Node current,int i){
         if(i == 0){
             return current.getEmployer();
         }
         return getEmployer(current.getNextNode(),i-1);
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public Node getNext() {
+        return next;
     }
 
 }

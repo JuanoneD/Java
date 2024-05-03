@@ -2,6 +2,7 @@ public class Time {
     int hour;
     int minutes;
     String date;
+    
 
 
     Time(String date,int hour, int minutes){
@@ -13,7 +14,7 @@ public class Time {
             this.minutes = minutes % 60;
         }
     }
-    
+
     public void setDate(String date) {
         this.date = date;
     }
