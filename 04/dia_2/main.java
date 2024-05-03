@@ -1,11 +1,14 @@
 import java.util.Scanner;
 
 public class main {
+
     public static Employer loginEmployer(ListNode list){
+
         Scanner scan = new Scanner(System.in);
         Employer user = null;
         String CPF,password;
         boolean loginSuccessful = false;
+
         while(true){
 
             System.out.println("Escreva o CPF");
@@ -35,7 +38,9 @@ public class main {
             }
         }
     }
+
     public static Time defineTime(){
+
         Scanner scan = new Scanner(System.in);
         Time currentTime = null;
 
@@ -51,7 +56,9 @@ public class main {
         currentTime = new Time(date, hours, minutes);
         
         System.out.println(date + " horas é " + hours + ":"+ minutes);
+
         scan.close();
+        
         return currentTime;
     }
     public static void main(String[] args){
@@ -66,6 +73,7 @@ public class main {
 
         currentTime = defineTime();
         user = loginEmployer(list);
+
 
         
         
