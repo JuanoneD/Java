@@ -1,4 +1,5 @@
 
+
 public class Queue<T> {
 
     private Node<T> head;
@@ -37,10 +38,18 @@ public class Queue<T> {
 
     public T dequeue(){
 
+        if(head == null){
+
+            return null;
+
+        }
+
         T data = (T) this.head.getData();
 
 
         this.head = head.getNext();
+
+        head.setPrev(null);
 
 
         return data;
@@ -55,8 +64,8 @@ public class Queue<T> {
 
     }
 
-    public Node<T> getTail() {
-        return tail;
+    public int getSize() {
+        return size;
     }
 
 }
