@@ -1,4 +1,62 @@
 
-public class Queue {
+public class Queue<T> {
+
+    private Node<T> head;
+    private Node<T> tail;
+    private int size;
+
+
+    Queue(){
+
+        this.head = null;
+        this.tail = null;
+        size = 0;
+
+    }
+
+
+    public void enqueue(T data){
+
+        Node<T> newNode =  new Node<T>(data);
+
+        size++;
+
+        if(head == null){
+
+            this.head = newNode;
+            this.tail = newNode;
+
+            return;
+        }
+
+        this.tail.setNext(newNode);
+        newNode.setPrev(this.tail);
+        this.tail = newNode;
+
+    }
+
+    public T dequeue(){
+
+        T data = (T) this.head.getData();
+
+
+        this.head = head.getNext();
+
+
+        return data;
+
+    }
+
+    public T peek(){
+
+        T data = (T) this.head.getData();
+
+        return data;
+
+    }
+
+    public Node<T> getTail() {
+        return tail;
+    }
 
 }

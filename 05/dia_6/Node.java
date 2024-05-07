@@ -1,27 +1,27 @@
 
 
 public class Node<T> {
-    private Node next = null;
-    private Node prev = null;
+    private Node<T> next = null;
+    private Node<T> prev = null;
     private T data;
 
     Node(T data){
         this.data = data;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
     
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
-    public void setPrev(Node prev) {
+    public void setPrev(Node<T> prev) {
         this.prev = prev;
     }
 
-    public Node getPrev() {
+    public Node<T> getPrev() {
         return prev;
     }
 
