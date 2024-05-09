@@ -58,7 +58,7 @@ public class World {
 
     }
 
-    public void playRound(){
+    public boolean playRound(){
 
         Individual player1 = null;
         Individual player2 = null;
@@ -144,7 +144,63 @@ public class World {
 
         }
 
-        System.out.println("Numero de Randolas == "+ numbersRandola + "| Numero de Colaborativos == "+ numbersCollaborative + "| Numero de trapaceiros == " + numbersCheater + "| Numeros de Rabugento " + numbersGrumpy + "| Numeros de copiadores " + numbersCopier + "| Numeros de tolerantes " + numbersTolerant);
+        int numbersIndividual = 0;
+
+        if( numbersRandola > 0 ){
+
+            System.out.println("Numero de Randolas  "+ numbersRandola);
+
+            numbersIndividual ++;
+
+        }
+
+        if ( numbersCollaborative > 0){
+
+            System.out.println("Numero de Colaborativos  "+ numbersCollaborative);
+
+            numbersIndividual ++;
+
+        }
+
+        if ( numbersCheater > 0){
+
+            System.out.println("Numero de trapaceiros  " + numbersCheater );
+
+            numbersIndividual ++;
+
+        }
+
+        if ( numbersGrumpy > 0 ){
+
+            System.out.println("Numeros de Rabugento " + numbersGrumpy );
+
+            numbersIndividual ++;
+
+        }
+
+        if ( numbersCopier > 0 ){
+
+            System.out.println("Numeros de copiadores " + numbersCopier );
+
+            numbersIndividual ++;
+
+        }
+
+        if (numbersTolerant > 0 ){
+
+            System.out.println( "Numeros de tolerantes " + numbersTolerant);
+
+            numbersIndividual ++;
+
+        }
+
+        if( numbersIndividual <= 1 ){
+
+            return true;
+
+        }
+
+        return false;
 
     }
     

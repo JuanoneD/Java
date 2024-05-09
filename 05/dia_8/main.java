@@ -7,17 +7,19 @@ public class main {
     World world = new World(0,0,1,499,0,0);
     Scanner scan = new Scanner(System.in);
 
-    int menu = 1;
+    boolean end = false;
+
     int rounds = 0;
 
-    while (menu != 0) {
-
-        world.playRound();
-
-        menu = scan.nextInt();
-
+    while (!end) {
         rounds ++;
         System.out.println(" Round: " + rounds);
+
+        end = world.playRound();
+
+        scan.nextLine();
+
+        
     }
 
 
