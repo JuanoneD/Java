@@ -9,55 +9,52 @@ public class World {
 
     World(int numbersRandola, int numbersCollaborative, int numbersCheater, int numbersGrumpy, int numbersCopier, int numbersTolerant){
 
-        Collaborative collaborative = null;
-        Randola randola = null;
-        Cheater cheater = null;
-        Grumpy grumpy = null;
-        Copier copier = null;
-        Tolerant tolerant = null;
+        Individual individual = null;
 
 
-        for(int i = 0; i < numbersCollaborative ; i ++){
+        while (numbersRandola > 0 || numbersCollaborative > 0 || numbersCheater > 0 || numbersGrumpy > 0 || numbersCopier > 0 || numbersTolerant > 0 ) {
+            
+            if( numbersRandola -- > 0 ){
 
-            collaborative = new Collaborative();
-            list.add(collaborative);
+                individual = new Randola();
+                list.add(individual);
+            }
 
-        }
+            if( numbersCollaborative -- > 0 ){
 
-        for(int i = 0; i < numbersRandola; i ++){
+                individual = new Collaborative();
+                list.add(individual);
 
-            randola = new Randola();
-            list.add(randola);
-        }
+            }
 
-        for(int i = 0; i < numbersCheater; i ++){
+            if ( numbersCheater -- > 0 ){
 
-            cheater = new Cheater();
-            list.add(cheater);
+                individual = new Cheater();
+                list.add(individual);
 
-        }
+            }
 
-        for(int i = 0; i < numbersGrumpy; i ++){
+            if ( numbersGrumpy -- > 0 ){
 
-            grumpy = new Grumpy();
-            list.add(grumpy);
+                individual = new Grumpy();
+                list.add(individual);
 
-        }
+            }
 
-        for(int i = 0; i < numbersCopier; i ++){
+            if ( numbersCopier -- > 0 ){
 
-            copier = new Copier();
-            list.add(copier);
+                individual = new Copier();
+                list.add(individual);
 
-        }
+            }
 
-        for (int i = 0; i < numbersTolerant; i ++){
+            if (numbersTolerant -- > 0 ){
 
-            tolerant = new Tolerant();
-            list.add(tolerant);
+                individual = new Tolerant();
+                list.add(individual);
+            }
 
         }
-        
 
     }
 
@@ -65,13 +62,23 @@ public class World {
 
         Individual player1 = null;
         Individual player2 = null;
+        int index1, index2;
 
         int number,numbersRandola = 0, numbersCollaborative = 0, numbersCheater = 0, numbersGrumpy = 0, numbersCopier = 0, numbersTolerant = 0;
 
         for(int i = 0; i < list.getSize()/2; i ++){
 
-            player1 = list.getValue(random.nextInt(list.getSize()));
-            player2 = list.getValue(random.nextInt(list.getSize()));
+
+            do{
+
+                index1 = random.nextInt(list.getSize());
+                index2 = random.nextInt(list.getSize());
+
+            }  while (index1 == index2);
+
+            
+            player1 = list.getValue(index1);
+            player2 = list.getValue(index2);
 
             machine.playMachine(player1, player1.play(), player2, player2.play());
 
