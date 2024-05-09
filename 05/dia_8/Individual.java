@@ -1,6 +1,9 @@
 abstract public class Individual{
 
-    int coins = 10;
+    protected int coins = 10;
+    protected boolean lostCoins = false;
+    protected boolean lastPlay = true;
+    protected int mistaken = 0;
 
     protected boolean putCoin(){
 
@@ -16,15 +19,45 @@ abstract public class Individual{
     }
 
     public int getCoins() {
+
         return coins;
+
     }
 
     public void setCoins(int coins) {
+
         this.coins = coins;
+
     }
 
-    public void remove1Coint(){
+    public void remove1Coin(){
+
         this.coins --;
+
+    }
+
+    public void setLostCoins(boolean lostCoins) {
+
+        this.lostCoins = lostCoins;
+
+    }
+
+    public void setLastPlay(boolean lastPlay) {
+
+        this.lastPlay = lastPlay;
+
+    }
+
+    public void  addMistake(){
+
+        mistaken ++;
+
+    }
+
+    public void setMistaken(int mistaken) {
+
+        this.mistaken = mistaken;
+
     }
 
     abstract public Individual clone();

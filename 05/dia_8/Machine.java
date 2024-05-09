@@ -7,6 +7,8 @@ public class Machine {
 
             user1.addCoins(2);
             user2.addCoins(2);
+            user1.setLastPlay(true);
+            user2.setLastPlay(true);
 
             return;
 
@@ -15,13 +17,32 @@ public class Machine {
         if(!coin1 && coin2){
 
             user1.addCoins(4);
+            user2.setLostCoins(false);
 
+            user2.setLastPlay(false);
+            user1.setLastPlay(true);
 
-        }else{
+            user2.addMistake();
+            
+            return;
+        }
+
+        if(coin1 && !coin2){
 
             user2.addCoins(4);
+            user1.setLostCoins(false);
+
+            user2.setLastPlay(true);
+            user1.setLastPlay(false);
+
+            user1.addMistake();
+
+            return;
 
         }
+
+        user1.setLastPlay(false);
+        user2.setLastPlay(false);
 
     }
 }
