@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Randola extends Individual {
 
-    Random random = new Random();
+    Random random = new Random(System.currentTimeMillis());
     
     @Override
     public boolean play(){

@@ -41,8 +41,16 @@ public class Machine {
 
         }
 
-        user1.setLastPlay(false);
-        user2.setLastPlay(false);
+        if(!coin1 && !coin2){
+
+            user1.setLastPlay(false);
+            user2.setLastPlay(false);
+
+            return;
+            
+        }
+
+        
 
     }
 }

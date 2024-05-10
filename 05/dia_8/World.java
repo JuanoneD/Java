@@ -4,7 +4,7 @@ public class World {
 
     Dynamic_array<Individual> list = new Dynamic_array<Individual>();
     Machine machine = new Machine();
-    Random random = new Random();
+    Random random = new Random(System.currentTimeMillis());
 
 
     World(int numbersRandola, int numbersCollaborative, int numbersCheater, int numbersGrumpy, int numbersCopier, int numbersTolerant){
@@ -81,10 +81,11 @@ public class World {
             player2 = list.getValue(index2);
 
             machine.playMachine(player1, player1.play(), player2, player2.play());
+            
 
         }
 
-        for(int i = 0; i < list.getSize(); i ++){
+        for( int i = 0; i < list.getSize(); i ++ ){
 
             player1 = list.getValue(i);
 
@@ -194,7 +195,7 @@ public class World {
 
         }
 
-        if( numbersIndividual <= 1 ){
+        if( numbersIndividual == 0 ){
 
             return true;
 
