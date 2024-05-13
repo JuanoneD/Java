@@ -17,7 +17,7 @@ public class Machine {
         if(!coin1 && coin2){
 
             user1.addCoins(4);
-            user2.setLostCoins(false);
+            user2.setLostCoins(true);
 
             user2.setLastPlay(false);
             user1.setLastPlay(true);
@@ -30,7 +30,7 @@ public class Machine {
         if(coin1 && !coin2){
 
             user2.addCoins(4);
-            user1.setLostCoins(false);
+            user1.setLostCoins(true);
 
             user2.setLastPlay(true);
             user1.setLastPlay(false);
@@ -47,7 +47,7 @@ public class Machine {
             user2.setLastPlay(false);
 
             return;
-            
+
         }
 
         

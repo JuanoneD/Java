@@ -4,12 +4,12 @@ public class Main {
 
  public static void main(String[] args) {
     
-    int numbersRandola = 0;
-    int numbersCollaborative = 0;
-    int numbersCheater = 0;
-    int numbersGrumpy = 0;
-    int numbersCopier = 0;
-    int numbersTolerant = 99;
+    int numbersRandola = 999999;
+    int numbersCollaborative = 999999;
+    int numbersCheater = 999999;
+    int numbersGrumpy = 999999;
+    int numbersCopier = 9999999;
+    int numbersTolerant = 999999;
 
     
     World world = new World(numbersRandola,numbersCollaborative,numbersCheater,numbersGrumpy,numbersCopier,numbersTolerant);
