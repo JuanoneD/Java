@@ -2,21 +2,21 @@ package greenhill.collections;
 
 public class Hash<T>  extends Sonic {
     
-    private ArrayList<LinkedList<DataHash<T>>> array;
+    private Arraylist<LinkedList<DataHash<T>>> array;
     private int capacity;
 
     Hash(int size){
 
         capacity = size;
 
-        array = new ArrayList<>(capacity);
+        array = new Arraylist<>(capacity);
         
     }
 
     Hash(){
 
         capacity = 8;
-        array = new ArrayList<>(capacity);
+        array = new Arraylist<>(capacity);
 
     }
 
@@ -25,50 +25,57 @@ public class Hash<T>  extends Sonic {
         int numeroMagicoDaYas = 735;
         int j;
         
-        LinkedList<T> newList = new LinkedList<>();
-        LinkedList<T> list;
+        DataHash<T> dataHash = new DataHash<T>(index, data);
+        LinkedList<DataHash<T>> list;
         
-        newList.add(data);
 
         if ( array.get( index % capacity ) == null){
-
-            array.add(newList);
             
-            array.set(index % capacity, newList);
+            list = array.get( index % capacity);
+
+            list = new LinkedList<>();
+            
+            list.add(dataHash);
 
             setSize(getSize() + 1);
 
             return;
         }
 
-        newList = array.get(index % capacity);
+        list = array.get(index % capacity);
 
-        // if( newList.getSize() > numeroMagicoDaYas ){ ///// Não da pra duplicar depois de feito pq a chave vai ser perdida
+        if( list.getSize() > numeroMagicoDaYas ){ 
 
-        //     capacity *= 2;
+            capacity *= 2;
 
-        //     ArrayList<LinkedList<T>> copy = new ArrayList<>(capacity);
+            Hash<T> copy = new Hash<>(capacity);
 
-        //     for(int i = 0; i < array.getSize(); i ++){
+            for(int i = 0; i < capacity; i ++){
 
-        //         list = array.get(i);
+                list = array.get(i);
 
-        //         if ( list.get(0) != null){
-        //             j = 0;
+                if ( list.get(i) != null){
+                    j = 0;
 
-        //             while ( list.get(j) != null) {
-                        
-        //                 copy.set(i, list.get(j));
+                    while ( list.get(j) != null) {
 
-        //             }
+                        copy.add(list.get(j).getIndex(), list.get(j).getData());
 
-        //         }
+                        j++;
+
+                    }
+
+                }
  
-        //     }
+            }
 
-        // }
+            array = copy.getArray();
 
-        newList.add(data);
+            list = array.get(index % capacity);
+
+        }
+
+        list.add(data);
 
         setSize( getSize() + 1);
 
@@ -76,7 +83,41 @@ public class Hash<T>  extends Sonic {
 
     public T get(int index){
 
+        LinkedList<DataHash<T>> list;
 
+        int j;
+
+        for(int i = 0; i < capacity; i ++){
+
+            list = array.get(i);
+
+            if ( list.get(i) != null){
+
+                j = 0;
+
+                while ( list.get(j) != null) {
+
+                    if ( index == list.get(j).getIndex() ){
+
+                        return list.get(j).getData();
+
+                    }
+
+                    j++;
+
+                }
+
+            }
+
+        }
+
+        return null;
+
+    }
+
+    private Arraylist<LinkedList<DataHash<T>>> getArray() {
+
+        return array;
 
     }
 

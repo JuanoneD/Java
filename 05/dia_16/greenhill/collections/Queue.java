@@ -28,19 +28,17 @@ public class Queue<T> extends Sonic {
         }
 
         tail.setNext(newNode);
-        newNode.setPrev(tail);
 
         tail = newNode;
 
         setSize( getSize() + 1);
     }
 
-    public T dequeue( T data ){
+    public T dequeue(){
 
         T aux = head.getData();
 
         head = head.getNext();
-        head.setPrev(null);
 
         setSize( getSize() - 1);
 
