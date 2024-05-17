@@ -120,6 +120,21 @@ public class Hash<T>  extends Sonic {
         return array;
 
     }
+    public LinkedList<DataHash<T>> getList(int index){
+
+        return array.get(index);
+
+    }
+
+    
+    public int getCapacity() {
+        return capacity;
+    }
+
+
+ 
+
+    
 
     
 

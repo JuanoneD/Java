@@ -70,6 +70,8 @@ public class LinkedList<T> extends List<T> {
         current.setData((T)value);
     }
 
-    
+    public Node<T> getHead() {
+        return head;
+    }
 
 }

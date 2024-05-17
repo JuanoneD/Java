@@ -1,11 +1,11 @@
 public class Main {
     
     LinkedList AASDASD;
-
+    Itareble;
 
     FOR (){
 
-        ASASSA.GET(I);
+     asas.ITAble()
 
     }
 }
