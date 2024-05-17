@@ -7,6 +7,8 @@ public class ArrayList<T>  extends List<T>{
     ArrayList(int size){
 
         array = ( T[] ) ( new Object[size] );
+        
+        setSize(size);
 
     }
 
