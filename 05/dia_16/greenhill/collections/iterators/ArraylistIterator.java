@@ -1,21 +1,25 @@
 package greenhill.collections.iterators;
 
-import java.util.ArrayList;
+import greenhill.collections.Arraylist;
 
-public class ArraylistIterator <E> implements Iterator<E> {
+public class ArraylistIterator <E> implements Iterator<E> 
+{
 
-    private ArrayList <E> lista;
+    private Arraylist <E> lista;
     private int a = -1;
 
-    ArraylistIterator(ArrayList<E> lista) {
+    public ArraylistIterator(Arraylist<E> lista)
+    {
         this.lista = lista;
     }
 
     @Override
-    public E next() throws ErroEsperado {
+    public E next() throws IteratorException 
+    {
         a++;
-        if (lista.get(a) == null) {
-            throw new ErroEsperado("Nao tem proximo!");
+        if (lista.get(a) == null) 
+        {
+            throw new IteratorException();
         }
 
         return (E)lista.get(a);
@@ -23,9 +27,11 @@ public class ArraylistIterator <E> implements Iterator<E> {
     }
 
     @Override
-    public boolean hasNext() {
+    public boolean hasNext() 
+    {
         
-        if (lista.get(a + 1) == null) {
+        if (lista.get(a + 1) == null) 
+        {
             return false;
         } else {
             return true;

@@ -1,20 +1,24 @@
 package greenhill.collections.iterators;
 import greenhill.collections.*;
 
-public class QueueIteratorr<E> implements Iterator<E> {
+public class QueueIteratorr<E> implements Iterator<E> 
+{
 
     private Queue<E> lista;
 
-    QueueIteratorr(Queue<E> lista) {
+    public QueueIteratorr(Queue<E> lista) 
+    {
         this.lista = lista;
 
     }
 
     @Override
-    public E next() throws ErroEsperado {
+    public E next() throws IteratorException 
+    {
 
-        if (lista.getSize() == 0) {
-            throw new ErroEsperado("Nao tem proximo!");
+        if (lista.getSize() == 0) 
+        {
+            throw new IteratorException();
         }
 
         return (E) lista.dequeue();
@@ -22,8 +26,10 @@ public class QueueIteratorr<E> implements Iterator<E> {
     }
 
     @Override
-    public boolean hasNext() {
-        if (lista.getSize() == 0) {
+    public boolean hasNext() 
+    {
+        if (lista.getSize() == 0) 
+        {
             return false;
         } else {
             return true;

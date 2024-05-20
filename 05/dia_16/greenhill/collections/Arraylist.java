@@ -1,16 +1,24 @@
 package greenhill.collections;
 
-public class Arraylist<T>  extends List{
+import greenhill.collections.iterators.Iterable;
+import greenhill.collections.iterators.Iterator;
+import greenhill.collections.stream.Stream;
+import greenhill.collections.iterators.ArraylistIterator;
+
+public class Arraylist<T>  extends List<T> implements Iterable<T> 
+{
 
     private T [] array;
 
-    Arraylist(int size){
+    public Arraylist(int size)
+    {
 
         array = ( T[] ) ( new Object[size] );
 
     }
 
-    Arraylist(){
+    public Arraylist()
+    {
 
         array = ( T[] ) ( new Object[10] );
 
@@ -18,15 +26,14 @@ public class Arraylist<T>  extends List{
 
 
     @Override
-    public void add(Object value) {
-        if(getSize() == array.length ){
+    public void add(T value) 
+    {
+        if(getSize() == array.length )
+        {
+            T[] copy = (T[])(new Object[ array.length * 2]);
 
-            T [] copy = ( T[] ) ( new Object[ array.length * 2] );
-
-            for( int i = 0; i < array.length ; i ++){
-
+            for( int i = 0; i < array.length ; i ++) {
                 copy[i] = array[i];
-
             }
 
             array = copy;
@@ -40,7 +47,8 @@ public class Arraylist<T>  extends List{
 
 
     @Override
-    public T get(int index) {
+    public T get(int index) 
+    {
 
         if (index < 0 || index >= getSize())
             throw new ArrayIndexOutOfBoundsException();
@@ -50,7 +58,8 @@ public class Arraylist<T>  extends List{
     }
 
     @Override
-    public void set(int index, Object value) {
+    public void set(int index, Object value) 
+    {
         
         if (index < 0 || index >= getSize())
             throw new ArrayIndexOutOfBoundsException(); 
@@ -59,5 +68,17 @@ public class Arraylist<T>  extends List{
 
     }
 
+
+
+    @Override
+    public Iterator<T> iterator() 
+    {
+        return new ArraylistIterator<T>(this);
+    }
+
+    @Override
+    public Stream<T> stream() {
+        return new Stream<>(this);
+    }
 
 }

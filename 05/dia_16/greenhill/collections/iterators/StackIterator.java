@@ -1,19 +1,23 @@
 package greenhill.collections.iterators;
 import greenhill.collections.*;
 
-public class StackIterator<E> implements Iterator<E> {
+public class StackIterator<E> implements Iterator<E> 
+{
 
     private Stack<E> lista;
 
-    StackIterator(Stack<E> lista) {
+    public StackIterator(Stack<E> lista) 
+    {
         this.lista = lista;
     }
 
     @Override
-    public E next() throws ErroEsperado {
+    public E next() throws IteratorException 
+    {
 
-        if (lista.getSize() == 0) {
-            throw new ErroEsperado("Nao tem proximo!");
+        if (lista.getSize() == 0) 
+        {
+            throw new IteratorException();
         }
 
         return lista.pop();
@@ -21,8 +25,10 @@ public class StackIterator<E> implements Iterator<E> {
     }
 
     @Override
-    public boolean hasNext() {
-        if (lista.getSize() == 0) {
+    public boolean hasNext() 
+    {
+        if (lista.getSize() == 0) 
+        {
             return false;
         } else {
             return true;

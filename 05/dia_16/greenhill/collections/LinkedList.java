@@ -1,12 +1,18 @@
 package greenhill.collections;
 
-public class LinkedList<T> extends List<T> {
-    
+import greenhill.collections.iterators.Iterable;
+import greenhill.collections.stream.Stream;
+import greenhill.collections.iterators.*;
+
+
+public class LinkedList<T> extends List<T>  implements Iterable<T> 
+{
+
     private Node<T> head;
     private Node<T> tail;
 
-
-    LinkedList(){
+    LinkedList() 
+    {
 
         head = null;
         tail = null;
@@ -14,16 +20,18 @@ public class LinkedList<T> extends List<T> {
     }
 
     @Override
-    public void add(Object value) {
-        
-        Node newNode = new Node<T>((T)value);
+    public void add(Object value) 
+    {
 
-        if( head == null){
+        Node newNode = new Node<T>((T) value);
+
+        if (head == null) 
+        {
 
             head = newNode;
             tail = newNode;
 
-            setSize(getSize() +  1);
+            setSize(getSize() + 1);
 
             return;
 
@@ -34,20 +42,21 @@ public class LinkedList<T> extends List<T> {
 
         tail = newNode;
 
-        setSize(getSize() +  1);
-        
+        setSize(getSize() + 1);
+
     }
 
     @Override
-    public T get(int index) {
+    public T get(int index) 
+    {
 
         Node<T> current = head;
 
         if (index < 0 || index >= getSize())
-            throw new ArrayIndexOutOfBoundsException(); 
+            throw new ArrayIndexOutOfBoundsException();
 
-        
-        for(int i = 0; i < index ; i ++){
+        for (int i = 0; i < index; i++) 
+        {
 
             current = current.getNext();
         }
@@ -56,22 +65,34 @@ public class LinkedList<T> extends List<T> {
     }
 
     @Override
-    public void set(int index, Object value) {
+    public void set(int index, Object value) 
+    {
 
         Node<T> current = head;
 
         if (index < 0 || index >= getSize())
-            throw new ArrayIndexOutOfBoundsException(); 
-        
+            throw new ArrayIndexOutOfBoundsException();
 
-        for(int i = 0; i < index ; i ++)
+        for (int i = 0; i < index; i++)
             current = current.getNext();
 
-        current.setData((T)value);
+        current.setData((T) value);
     }
 
-    public Node<T> getHead() {
+    public Node<T> getHead() 
+    {
         return head;
+    }
+
+    @Override
+    public Iterator<T> iterator() 
+    {
+        return new LinkedListIterator<T>(this);
+    }
+
+    @Override
+    public Stream<T> stream() {
+        return new Stream<>(this);
     }
 
 }

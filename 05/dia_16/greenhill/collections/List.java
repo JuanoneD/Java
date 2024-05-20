@@ -1,6 +1,7 @@
 package greenhill.collections;
 
-abstract public class List<T> extends Sonic{
+abstract public class List<T> extends Sonic 
+{
     
     abstract public T get(int index);
 

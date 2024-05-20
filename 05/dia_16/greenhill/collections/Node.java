@@ -1,12 +1,14 @@
 package greenhill.collections;
 
-public class Node<T> {
+public class Node<T>
+{
     
     private Node<T> next;
     private Node<T> prev;
     private T data;
 
-    Node(T data,Node<T> next,Node<T> prev){
+    Node(T data,Node<T> next,Node<T> prev)
+    {
 
         this.data = data;
         this.next = next;
@@ -14,7 +16,8 @@ public class Node<T> {
 
     }
 
-    Node(T data){
+    Node(T data)
+    {
 
         this.data = data;
         this.next = null;
@@ -22,27 +25,33 @@ public class Node<T> {
 
     }
 
-    public T getData() {
+    public T getData() 
+    {
         return data;
     }
 
-    public Node<T> getNext() {
+    public Node<T> getNext() 
+    {
         return next;
     }
 
-    public Node<T> getPrev() {
+    public Node<T> getPrev() 
+    {
         return prev;
     }
 
-    public void setData(T data) {
+    public void setData(T data) 
+    {
         this.data = data;
     }
 
-    public void setNext(Node<T> next) {
+    public void setNext(Node<T> next) 
+    {
         this.next = next;
     }
 
-    public void setPrev(Node<T> prev) {
+    public void setPrev(Node<T> prev) 
+    {
         this.prev = prev;
     }
 

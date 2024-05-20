@@ -3,12 +3,10 @@ import greenhill.collections.*;
 
 public class LinkedListIterator<E> implements Iterator<E>
 {
-
-    // private LinkedList<E> lista;
     
     private Node<E> atual;
 
-    LinkedListIterator(LinkedList<E> lista)
+    public LinkedListIterator(LinkedList<E> lista)
     {
     
         atual = (Node<E>) lista.get(0);
@@ -16,11 +14,13 @@ public class LinkedListIterator<E> implements Iterator<E>
     }
 
     @Override
-    public E next() throws ErroEsperado{
+    public E next() throws IteratorException
+    {
 
-        if (atual == null) {
+        if (atual == null) 
+        {
 
-            throw new ErroEsperado("Nao tem proximo!");
+            throw new IteratorException();
         }
 
         E aux = atual.getData();
@@ -31,8 +31,10 @@ public class LinkedListIterator<E> implements Iterator<E>
     }
 
     @Override
-    public boolean hasNext() {
-        if ( atual.getNext() == null) {
+    public boolean hasNext() 
+    {
+        if ( atual.getNext() == null) 
+        {
             return false;
         }
     

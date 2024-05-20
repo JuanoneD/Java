@@ -1,16 +1,21 @@
 package greenhill.collections;
 
-public class Stack<T> extends Sonic {
-    
+import greenhill.collections.iterators.StackIterator;
+import greenhill.collections.stream.Stream;
+import greenhill.collections.iterators.Iterator;
+import greenhill.collections.iterators.Iterable;
+
+public class Stack<T> extends Sonic implements Iterable<T> {
+
     Node<T> head;
 
-    Stack(){
+    Stack() {
 
         head = null;
 
     }
 
-    public void push(T data){
+    public void push(T data) {
 
         Node<T> newNode = new Node<T>(data);
 
@@ -18,11 +23,11 @@ public class Stack<T> extends Sonic {
 
         head = newNode;
 
-        setSize(getSize() +  1);
+        setSize(getSize() + 1);
 
     }
 
-    public T pop(){
+    public T pop() {
 
         T aux = head.getData();
 
@@ -32,5 +37,15 @@ public class Stack<T> extends Sonic {
 
         return aux;
 
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new StackIterator<T>(this);
+    }
+
+    @Override
+    public Stream<T> stream() {
+        return new Stream<>(this);
     }
 }

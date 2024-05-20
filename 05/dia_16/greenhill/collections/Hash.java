@@ -1,6 +1,12 @@
 package greenhill.collections;
 
-public class Hash<T>  extends Sonic {
+import greenhill.collections.iterators.HashIterator;
+import greenhill.collections.iterators.Iterable;
+import greenhill.collections.iterators.Iterator;
+import greenhill.collections.stream.Stream;
+
+public class Hash<T>  extends Sonic  implements Iterable<T> 
+{
     
     private Arraylist<LinkedList<DataHash<T>>> array;
     private int capacity;
@@ -13,23 +19,25 @@ public class Hash<T>  extends Sonic {
         
     }
 
-    Hash(){
+    Hash()
+    {
 
         capacity = 8;
         array = new Arraylist<>(capacity);
 
     }
 
-    public void add(int index, T data){
+    public void add(int index, T data)
+    {
 
-        int numeroMagicoDaYas = 735;
         int j;
         
         DataHash<T> dataHash = new DataHash<T>(index, data);
         LinkedList<DataHash<T>> list;
         
 
-        if ( array.get( index % capacity ) == null){
+        if ( array.get( index % capacity ) == null)
+        {
             
             list = array.get( index % capacity);
 
@@ -44,20 +52,24 @@ public class Hash<T>  extends Sonic {
 
         list = array.get(index % capacity);
 
-        if( list.getSize() > numeroMagicoDaYas ){ 
+        if( list.getSize() > capacity * 0.75 )
+        { 
 
             capacity *= 2;
 
             Hash<T> copy = new Hash<>(capacity);
 
-            for(int i = 0; i < capacity; i ++){
+            for(int i = 0; i < capacity; i ++)
+            {
 
                 list = array.get(i);
 
-                if ( list.get(i) != null){
+                if ( list.get(i) != null)
+                {
                     j = 0;
 
-                    while ( list.get(j) != null) {
+                    while ( list.get(j) != null) 
+                    {
 
                         copy.add(list.get(j).getIndex(), list.get(j).getData());
 
@@ -81,23 +93,28 @@ public class Hash<T>  extends Sonic {
 
     }
 
-    public T get(int index){
+    public T get(int index)
+    {
 
         LinkedList<DataHash<T>> list;
 
         int j;
 
-        for(int i = 0; i < capacity; i ++){
+        for(int i = 0; i < capacity; i ++)
+        {
 
             list = array.get(i);
 
-            if ( list.get(i) != null){
+            if ( list.get(i) != null)
+            {
 
                 j = 0;
 
-                while ( list.get(j) != null) {
+                while ( list.get(j) != null) 
+                {
 
-                    if ( index == list.get(j).getIndex() ){
+                    if ( index == list.get(j).getIndex() )
+                    {
 
                         return list.get(j).getData();
 
@@ -115,27 +132,34 @@ public class Hash<T>  extends Sonic {
 
     }
 
-    private Arraylist<LinkedList<DataHash<T>>> getArray() {
+    private Arraylist<LinkedList<DataHash<T>>> getArray() 
+    {
 
         return array;
 
     }
-    public LinkedList<DataHash<T>> getList(int index){
+    public LinkedList<DataHash<T>> getList(int index)
+    {
 
         return array.get(index);
 
     }
 
     
-    public int getCapacity() {
+    public int getCapacity() 
+    {
         return capacity;
     }
 
 
- 
+    @Override
+    public Iterator<T> iterator() {
 
-    
+        return new HashIterator<T>(this);
+    }
 
-    
-
+    @Override
+    public Stream<T> stream() {
+        return new Stream<>(this);
+    }
 }

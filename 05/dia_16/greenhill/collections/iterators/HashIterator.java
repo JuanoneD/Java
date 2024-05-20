@@ -1,14 +1,16 @@
 package greenhill.collections.iterators;
 import greenhill.collections.*;
 
-public class HashIterator<E> implements Iterator<E> {
+public class HashIterator<E> implements Iterator<E> 
+{
 
     private Hash<E> hash;
 
     private int positionArray;
     private Node<DataHash<E>> current;
 
-    HashIterator(Hash<E> hash){
+    public HashIterator(Hash<E> hash)
+    {
 
         this.hash = hash;
         positionArray = -1;
@@ -16,19 +18,22 @@ public class HashIterator<E> implements Iterator<E> {
     }
 
     @Override
-    public E next() throws ErroEsperado {
+    public E next() throws IteratorException 
+    {
 
-        if ( current == null ){
+        if ( current == null )
+        {
 
-            if ( positionArray < hash.getCapacity()){
+            if ( positionArray < hash.getCapacity())
+            {
 
                 positionArray ++;
 
-                current = hash.getList(positionArray).getHead();;
+                current = hash.getList(positionArray).getHead();
 
             }else{
 
-                throw new ErroEsperado("Nao tem proximo!");
+                throw new IteratorException();
 
             }  
             
@@ -40,6 +45,31 @@ public class HashIterator<E> implements Iterator<E> {
 
         return aux;
   
+    }
+
+
+    @Override
+    public boolean hasNext() 
+    {
+
+        if ( current == null )
+        {
+
+            if ( positionArray < hash.getCapacity())
+            {
+
+                return true;
+
+            }else{
+
+                return false;
+
+            }  
+            
+        }
+        
+        return true;
+        
     }
     
 }
