@@ -14,6 +14,7 @@ public class HashIterator<E> implements Iterator<E>
 
         this.hash = hash;
         positionArray = -1;
+        current = null;
 
     }
 
@@ -23,20 +24,18 @@ public class HashIterator<E> implements Iterator<E>
 
         if ( current == null )
         {
+                do{
+                    positionArray ++;
+                    current = hash.getList(positionArray).getHead();
 
-            if ( positionArray < hash.getCapacity())
-            {
+                }while (current == null &&  positionArray < hash.getCapacity());
 
-                positionArray ++;
 
-                current = hash.getList(positionArray).getHead();
+                if (current == null)
+                    throw new IteratorException();
+                
+                
 
-            }else{
-
-                throw new IteratorException();
-
-            }  
-            
         }
 
         E aux = current.getData().getData();
@@ -55,10 +54,20 @@ public class HashIterator<E> implements Iterator<E>
         if ( current == null )
         {
 
-            if ( positionArray < hash.getCapacity())
+            if ( positionArray < hash.getCapacity()-1)
             {
+                int i = positionArray;
+                do{
 
-                return true;
+                    i ++;
+
+                }while ( hash.getList(i) == null &&  i < hash.getCapacity()-1);
+
+                if (hash.getList(i) == null){
+
+                    return false;
+                }
+                    
 
             }else{
 

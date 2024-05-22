@@ -30,8 +30,7 @@ public class ArraylistIterator <E> implements Iterator<E>
     public boolean hasNext() 
     {
         
-        if (lista.get(a + 1) == null) 
-        {
+        if (a + 1 >= lista.getSize()){
             return false;
         } else {
             return true;

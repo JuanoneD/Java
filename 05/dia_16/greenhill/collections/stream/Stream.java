@@ -34,18 +34,33 @@ public class Stream<E>
     {
 
         Iterator<E> it = iterable.iterator();
+        Arraylist<E> result = new Arraylist<>();
 
         while (it.hasNext()) {
 
-            
-            
+            E value = it.next();
+
+            if ( func.apply(value))
+                result.add(value);
+
         }
         
+        return result.stream();
 
     }
 
-    public List<E> collect()
-    {
+    public List<E> collect(){
         
+        Iterator<E> it = iterable.iterator();
+        Arraylist<E> result = new Arraylist<>();
+
+        while (it.hasNext()){
+
+            result.add(it.next());
+
+        }
+
+        return result;
+
     }
 }

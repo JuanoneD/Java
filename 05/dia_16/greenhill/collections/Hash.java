@@ -11,19 +11,31 @@ public class Hash<T>  extends Sonic  implements Iterable<T>
     private Arraylist<LinkedList<DataHash<T>>> array;
     private int capacity;
 
-    Hash(int size){
+    public Hash(int size){
 
         capacity = size;
 
         array = new Arraylist<>(capacity);
+
+        for (int i = 0;i < capacity;i++){
+
+            array.add(null);
+
+        }
         
     }
 
-    Hash()
+    public Hash()
     {
 
         capacity = 8;
         array = new Arraylist<>(capacity);
+
+        for (int i = 0;i < capacity;i++){
+
+            array.add(null);
+
+        }
 
     }
 
@@ -38,12 +50,12 @@ public class Hash<T>  extends Sonic  implements Iterable<T>
 
         if ( array.get( index % capacity ) == null)
         {
-            
-            list = array.get( index % capacity);
-
+        
             list = new LinkedList<>();
             
             list.add(dataHash);
+
+            array.set(index % capacity, list);
 
             setSize(getSize() + 1);
 
@@ -52,7 +64,7 @@ public class Hash<T>  extends Sonic  implements Iterable<T>
 
         list = array.get(index % capacity);
 
-        if( list.getSize() > capacity * 0.75 )
+        if( list.getSize() > capacity)
         { 
 
             capacity *= 2;
@@ -87,7 +99,7 @@ public class Hash<T>  extends Sonic  implements Iterable<T>
 
         }
 
-        list.add(data);
+        list.add(dataHash);
 
         setSize( getSize() + 1);
 
@@ -100,29 +112,25 @@ public class Hash<T>  extends Sonic  implements Iterable<T>
 
         int j;
 
-        for(int i = 0; i < capacity; i ++)
+        list = array.get(index % capacity );
+
+        if ( list != null)
         {
 
-            list = array.get(i);
+            j = 0;
 
-            if ( list.get(i) != null)
+            while ( list.get(j) != null) 
             {
-
-                j = 0;
-
-                while ( list.get(j) != null) 
+                DataHash<T> auxDataHash = list.get(j);
+                int aux = auxDataHash.getIndex();
+                if ( aux == index)
                 {
 
-                    if ( index == list.get(j).getIndex() )
-                    {
-
-                        return list.get(j).getData();
-
-                    }
-
-                    j++;
+                    return list.get(j).getData();
 
                 }
+
+                j++;
 
             }
 
