@@ -121,9 +121,7 @@ public class Hash<T>  extends Sonic  implements Iterable<T>
 
             while ( list.get(j) != null) 
             {
-                DataHash<T> auxDataHash = list.get(j);
-                int aux = auxDataHash.getIndex();
-                if ( aux == index)
+                if ( list.get(j).getIndex() == index)
                 {
 
                     return list.get(j).getData();
